@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Turnstile checkbox test</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<h1>Turnstile interactive checkbox test</h1>
+<p>This page uses Cloudflare's test site key that forces an interactive challenge.</p>
+<form id="f" action="#" method="post" onsubmit="return false;">
+  <div class="cf-turnstile" data-sitekey="3x00000000000000000000AF"></div>
+  <p id="status">waiting for the checkbox…</p>
+  <input type="submit" value="Submit">
+</form>
+<script>
+  setInterval(function () {
+    var t = document.querySelector('[name="cf-turnstile-response"]');
+    if (t && t.value) document.getElementById('status').textContent = 'TOKEN OK: ' + t.value.slice(0, 24) + '...';
+  }, 500);
+</script>
+</body>
+</html>
